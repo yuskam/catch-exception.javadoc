@@ -1,2 +1,4 @@
 com.googlecode.catchexception
+com.googlecode.catchexception.apis
+com.googlecode.catchexception.apis.internal.hamcrest
 com.googlecode.catchexception.internal
