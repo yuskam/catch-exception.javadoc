@@ -23,8 +23,8 @@
 <span class="sourceLineNo">015</span> */<a name="line.15"></a>
 <span class="sourceLineNo">016</span>package com.googlecode.catchexception.apis;<a name="line.16"></a>
 <span class="sourceLineNo">017</span><a name="line.17"></a>
-<span class="sourceLineNo">018</span>import org.fest.assertions.api.Assertions;<a name="line.18"></a>
-<span class="sourceLineNo">019</span>import org.fest.assertions.api.ThrowableAssert;<a name="line.19"></a>
+<span class="sourceLineNo">018</span>import org.assertj.core.api.Assertions;<a name="line.18"></a>
+<span class="sourceLineNo">019</span>import org.assertj.core.api.ThrowableAssert;<a name="line.19"></a>
 <span class="sourceLineNo">020</span><a name="line.20"></a>
 <span class="sourceLineNo">021</span>import com.googlecode.catchexception.CatchException;<a name="line.21"></a>
 <span class="sourceLineNo">022</span>import com.googlecode.catchexception.ExceptionNotThrownAssertionError;<a name="line.22"></a>
@@ -52,9 +52,9 @@
 <span class="sourceLineNo">044</span>&lt;/pre&gt;&lt;/code&gt;<a name="line.44"></a>
 <span class="sourceLineNo">045</span> * &lt;p&gt;<a name="line.45"></a>
 <span class="sourceLineNo">046</span> * The Method {@link #then(Exception)} uses &lt;a<a name="line.46"></a>
-<span class="sourceLineNo">047</span> * href="https://github.com/alexruiz/fest-assert-2.x"&gt;FEST Fluent Assertions<a name="line.47"></a>
-<span class="sourceLineNo">048</span> * 2.x&lt;/a&gt;. You can use them directly if you like:<a name="line.48"></a>
-<span class="sourceLineNo">049</span> * &lt;code&gt;&lt;pre class="prettyprint lang-java"&gt;// import static org.fest.assertions.Assertions.assertThat;<a name="line.49"></a>
+<span class="sourceLineNo">047</span> * href="http://code.google.com/p/fest/"&gt;FEST&lt;/a&gt; assertions. You can use them<a name="line.47"></a>
+<span class="sourceLineNo">048</span> * directly if you like:<a name="line.48"></a>
+<span class="sourceLineNo">049</span> * &lt;code&gt;&lt;pre class="prettyprint lang-java"&gt;// import static org.assertj.core.api.Assertions.assertThat;<a name="line.49"></a>
 <span class="sourceLineNo">050</span><a name="line.50"></a>
 <span class="sourceLineNo">051</span>// then we expect an IndexOutOfBoundsException<a name="line.51"></a>
 <span class="sourceLineNo">052</span>assertThat(caughtException())<a name="line.52"></a>
@@ -69,7 +69,7 @@
 <span class="sourceLineNo">061</span> * @author rwoo<a name="line.61"></a>
 <span class="sourceLineNo">062</span> * <a name="line.62"></a>
 <span class="sourceLineNo">063</span> */<a name="line.63"></a>
-<span class="sourceLineNo">064</span>public class CatchExceptionBdd {<a name="line.64"></a>
+<span class="sourceLineNo">064</span>public class CatchExceptionAssertJ {<a name="line.64"></a>
 <span class="sourceLineNo">065</span><a name="line.65"></a>
 <span class="sourceLineNo">066</span>    /**<a name="line.66"></a>
 <span class="sourceLineNo">067</span>     * Use it together with {@link #then(Exception)} or<a name="line.67"></a>
@@ -125,37 +125,38 @@
 <span class="sourceLineNo">117</span>    }<a name="line.117"></a>
 <span class="sourceLineNo">118</span><a name="line.118"></a>
 <span class="sourceLineNo">119</span>    /**<a name="line.119"></a>
-<span class="sourceLineNo">120</span>     * Enables &lt;a href="https://github.com/alexruiz/fest-assert-2.x"&gt;FEST Fluent<a name="line.120"></a>
-<span class="sourceLineNo">121</span>     * Assertions 2.x&lt;/a&gt; about the caught exception.<a name="line.121"></a>
-<span class="sourceLineNo">122</span>     * &lt;p&gt;<a name="line.122"></a>
-<span class="sourceLineNo">123</span>     * EXAMPLE:<a name="line.123"></a>
-<span class="sourceLineNo">124</span>     * &lt;code&gt;&lt;pre class="prettyprint lang-java"&gt;// given an empty list<a name="line.124"></a>
-<span class="sourceLineNo">125</span>List myList = new ArrayList();<a name="line.125"></a>
-<span class="sourceLineNo">126</span><a name="line.126"></a>
-<span class="sourceLineNo">127</span>// when we try to get first element of the list<a name="line.127"></a>
-<span class="sourceLineNo">128</span>when(myList).get(1);<a name="line.128"></a>
-<span class="sourceLineNo">129</span><a name="line.129"></a>
-<span class="sourceLineNo">130</span>// then we expect an IndexOutOfBoundsException<a name="line.130"></a>
-<span class="sourceLineNo">131</span>then(caughtException())<a name="line.131"></a>
-<span class="sourceLineNo">132</span>        .isInstanceOf(IndexOutOfBoundsException.class)<a name="line.132"></a>
-<span class="sourceLineNo">133</span>        .hasMessage("Index: 1, Size: 0") <a name="line.133"></a>
-<span class="sourceLineNo">134</span>        .hasMessageStartingWith("Index: 1") <a name="line.134"></a>
-<span class="sourceLineNo">135</span>        .hasMessageEndingWith("Size: 0") <a name="line.135"></a>
-<span class="sourceLineNo">136</span>        .hasMessageContaining("Size") <a name="line.136"></a>
-<span class="sourceLineNo">137</span>        .hasNoCause();<a name="line.137"></a>
-<span class="sourceLineNo">138</span>&lt;/pre&gt;&lt;/code&gt;<a name="line.138"></a>
-<span class="sourceLineNo">139</span>     * <a name="line.139"></a>
-<span class="sourceLineNo">140</span>     * @param actualException<a name="line.140"></a>
-<span class="sourceLineNo">141</span>     *            the value to be the target of the assertions methods.<a name="line.141"></a>
-<span class="sourceLineNo">142</span>     * @return Returns the created assertion object.<a name="line.142"></a>
-<span class="sourceLineNo">143</span>     * @see Assertions#assertThat(Throwable)<a name="line.143"></a>
-<span class="sourceLineNo">144</span>     */<a name="line.144"></a>
-<span class="sourceLineNo">145</span>    public static ThrowableAssert then(Exception actualException) {<a name="line.145"></a>
-<span class="sourceLineNo">146</span>        // delegate to FEST assertions<a name="line.146"></a>
-<span class="sourceLineNo">147</span>        return Assertions.assertThat(actualException);<a name="line.147"></a>
-<span class="sourceLineNo">148</span>    }<a name="line.148"></a>
-<span class="sourceLineNo">149</span><a name="line.149"></a>
-<span class="sourceLineNo">150</span>}<a name="line.150"></a>
+<span class="sourceLineNo">120</span>     * Enables &lt;a<a name="line.120"></a>
+<span class="sourceLineNo">121</span>     * href="https://github.com/joel-costigliola/assertj-core"&gt;AssertJ&lt;/a&gt;<a name="line.121"></a>
+<span class="sourceLineNo">122</span>     * assertions about the caught exception.<a name="line.122"></a>
+<span class="sourceLineNo">123</span>     * &lt;p&gt;<a name="line.123"></a>
+<span class="sourceLineNo">124</span>     * EXAMPLE:<a name="line.124"></a>
+<span class="sourceLineNo">125</span>     * &lt;code&gt;&lt;pre class="prettyprint lang-java"&gt;// given an empty list<a name="line.125"></a>
+<span class="sourceLineNo">126</span>List myList = new ArrayList();<a name="line.126"></a>
+<span class="sourceLineNo">127</span><a name="line.127"></a>
+<span class="sourceLineNo">128</span>// when we try to get first element of the list<a name="line.128"></a>
+<span class="sourceLineNo">129</span>when(myList).get(1);<a name="line.129"></a>
+<span class="sourceLineNo">130</span><a name="line.130"></a>
+<span class="sourceLineNo">131</span>// then we expect an IndexOutOfBoundsException<a name="line.131"></a>
+<span class="sourceLineNo">132</span>then(caughtException())<a name="line.132"></a>
+<span class="sourceLineNo">133</span>        .isInstanceOf(IndexOutOfBoundsException.class)<a name="line.133"></a>
+<span class="sourceLineNo">134</span>        .hasMessage("Index: 1, Size: 0") <a name="line.134"></a>
+<span class="sourceLineNo">135</span>        .hasMessageStartingWith("Index: 1") <a name="line.135"></a>
+<span class="sourceLineNo">136</span>        .hasMessageEndingWith("Size: 0")<a name="line.136"></a>
+<span class="sourceLineNo">137</span>        .hasMessageContaining("Size") <a name="line.137"></a>
+<span class="sourceLineNo">138</span>        .hasNoCause();<a name="line.138"></a>
+<span class="sourceLineNo">139</span>&lt;/pre&gt;&lt;/code&gt;<a name="line.139"></a>
+<span class="sourceLineNo">140</span>     * <a name="line.140"></a>
+<span class="sourceLineNo">141</span>     * @param actualException<a name="line.141"></a>
+<span class="sourceLineNo">142</span>     *            the value to be the target of the assertions methods.<a name="line.142"></a>
+<span class="sourceLineNo">143</span>     * @return Returns the created assertion object.<a name="line.143"></a>
+<span class="sourceLineNo">144</span>     * @see Assertions#assertThat(Throwable)<a name="line.144"></a>
+<span class="sourceLineNo">145</span>     */<a name="line.145"></a>
+<span class="sourceLineNo">146</span>    public static ThrowableAssert then(Exception actualException) {<a name="line.146"></a>
+<span class="sourceLineNo">147</span>        // delegate to AssertJ assertions<a name="line.147"></a>
+<span class="sourceLineNo">148</span>        return Assertions.assertThat(actualException);<a name="line.148"></a>
+<span class="sourceLineNo">149</span>    }<a name="line.149"></a>
+<span class="sourceLineNo">150</span><a name="line.150"></a>
+<span class="sourceLineNo">151</span>}<a name="line.151"></a>
 
 
 
